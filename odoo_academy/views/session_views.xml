@@ -37,18 +37,5 @@
               </tree>
             </field>
          </record>
-
-        <record model="ir.ui.view" id="session_view_search">
-            <field name="name">academy.session.search</field>
-            <field name="model">academy.session</field>
-            <field name="arch" type="xml">
-              <search>
-                <field name="name"/>
-                <field name="description"/>
-              </search>
-
-            </field>
-        </record>
-
     </data>
 </odoo>
