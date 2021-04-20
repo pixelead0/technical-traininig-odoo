@@ -5,8 +5,10 @@
             <field name="name">ERP 101</field>
             <field name="description">Learn ERP Systems</field>
             <field name="level">beginner</field>
+            <field name="base_price">12.00</field>
+            <field name="additional_fee">23.00</field>
         </record>
-        
+
         <record model="academy.course" id="accountung_200">
             <field name="name">Accountung 200</field>
             <field name="description">
@@ -15,12 +17,17 @@
                 Learning about cost Accounting and pricing and revenue analysis
             </field>
             <field name="level">intermediate</field>
+            <field name="base_price">10.00</field>
+            <field name="additional_fee">11.00</field>
         </record>
 
         <record model="academy.course" id="website_500">
             <field name="name">Website 500</field>
             <field name="description"></field>
             <field name="level">advanced</field>
+            <field name="base_price">34.00</field>
+            <field name="additional_fee">45.00</field>
         </record>
     </data>
 </odoo>
+
