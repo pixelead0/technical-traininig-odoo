@@ -5,7 +5,6 @@ from odoo.exceptions import UserError, ValidationError
 from datetime import timedelta
 
 
-
 class Session(models.Model):
 
     _name = 'academy.session'
@@ -48,5 +47,3 @@ class Session(models.Model):
                 record.duration = (record.end_date - record.start_date).days + 1
             else:
                 continue
-
-
