@@ -49,7 +49,7 @@
       <field name="arch" type="xml">
         <calendar string="Session Calendar"
           date_start="start_date"
-          date_stio="end_date"
+          date_stop="end_date"
           color="instructor_id"
           mode="month">
           <field name="name"/>
