@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="art_work_form_view" model="ir.ui.view">
+            <field name="name">art.work.form.view</field>
+            <field name="model">art.work</field>
+            <field name="arch" type="xml">
+                <form string="Formulario de Obras de Arte">
+                    <header name="statusbar">
+                        <button string="Almacenar" type="object" name="almacenar" attrs="{'invisible': [('state', 'in', ('vendido', 'almacenado'))]}" class="oe_highlight"/>
+                        <button string="Exhibir" type="object" name="exhibir" attrs="{'invisible': [('state', '!=', 'almacenado')]}"/>
+                        <button string="Vender" type="object" name="vender" attrs="{'invisible': [('state', '=', 'vendido')]}"/>
+                        <button string="Página Web" type="object" name="ir_a_pagina"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <h1><field name="nombre"/></h1>
+                        <group name="art_info">
+                            <group>
+                                <field name="largo"/>
+                                <field name="anchura"/>
+                                <field name="peso"/>
+                            </group>
+                            <group>
+                                <field name="solo_admin"/>
+                                <field name="foto_obra" widget="image"/>
+                                <field name="artist_id"/>
+                            </group>
+                        </group>
+                        <group name="info_adicional" string="Información Adicional">
+                            <group>
+                                <field name="precio"/>
+                                <field name="en_venta"/>
+                            </group>
+                            <group>
+                                <field name="display_date_start"/>
+                                <field name="display_date_end"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="art_work_tree_view" model="ir.ui.view">
+            <field name="name">Art Work</field>
+            <field name="model">art.work</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="state == 'vendido'">
+                    <groupby name="artist_id">
+                        <button type="edit" name="edit" string="Edit"/>
+                    </groupby>
+                    <field name="nombre"/>
+                    <field name="largo"/>
+                    <field name="anchura"/>
+                    <field name="en_venta" readonly="1"/>
+                    <field name="precio" sum="Total"/>
+                    <field name="state" width="50px"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="art_gallery_art_view_activity" model="ir.ui.view">
+            <field name="name">art.gallery.art.activity</field>
+            <field name="model">art.work</field>
+            <field name="arch" type="xml">
+                <activity string="Art Work">
+                    <templates>
+                        <div t-name="activity-box">
+                            <div>
+                                <field name="nombre"/>
+                                <field name="artist_id" display="full"/>
+                            </div>
+                        </div>
+                    </templates>
+                </activity>
+            </field>
+        </record>
+        
+        <record id="art_gallery_calendar_view" model="ir.ui.view">
+            <field name="name">art.gallery.calendar</field>
+            <field name="model">art.work</field>
+            <field name="arch" type="xml">
+                <calendar date_start="display_date_start" date_stop="display_date_end" event_open_popup="1" mode="month">
+                    <field name="nombre"/>
+                </calendar>
+            </field>
+        </record>
+        
+        <record id="art_gallery_search_view" model="ir.ui.view">
+            <field name="name">art.gallery.view</field>
+            <field name="model">art.work</field>
+            <field name="arch" type="xml">
+                <search string="Art Works">
+                    <field name="nombre"/>
+                    <field name="largo"/>
+                    <field name="anchura"/>
+                    <field name="solo_admin"/>
+                    <field name="state"/>
+                    <field name="en_venta"/>
+                    
+                    <searchpanel>
+                        <field name="artist_id"/>
+                        <field name="state"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>
